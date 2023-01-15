@@ -1,0 +1,5 @@
+/.dump/
+/.testdata/dist/
+/bin/
+/dist/
+.env

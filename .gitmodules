@@ -1,0 +1,4 @@
+[submodule ".testdata/.theme"]
+	path = .testdata/.theme
+	url = https://github.com/bluebrown/doktri-theme-default
+	branch = main
