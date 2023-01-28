@@ -166,7 +166,7 @@ GLOBAL OPTIONS:
 ### Binary Release
 
 ```bash
-curl -fsSL github.com/bluebrown/releases/latest/download/doktri_linux_x86_64.tar.gz | tar -xzf - doktri
+curl -fsSL https://github.com/bluebrown/doktri/releases/latest/download/doktri_linux_x86_64.tar.gz | tar -xzf - doktri
 ```
 
 ### Form Source
