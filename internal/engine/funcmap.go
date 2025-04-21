@@ -24,11 +24,12 @@ func NewFuncMapClosure(e *Engine) *FuncMapClosure {
 // generate the funcmap to be used by the templates
 func (fmc *FuncMapClosure) FuncMap() template.FuncMap {
 	return map[string]any{
-		"meta":    fmc.Meta(),
-		"render":  fmc.Render(),
-		"toc":     fmc.Toc(),
-		"excerpt": fmc.Excerpt(),
-		"link":    fmc.Link(),
+		"meta":        fmc.Meta(),
+		"render":      fmc.Render(),
+		"toc":         fmc.Toc(),
+		"excerpt":     fmc.Excerpt(),
+		"link":        fmc.Link(),
+		"frontmatter": fmc.FrontMatter(),
 	}
 }
 
@@ -114,5 +115,15 @@ func (fmc *FuncMapClosure) Excerpt() func(b []byte) string {
 func (fmc *FuncMapClosure) Link() func(href, rel string) string {
 	return func(href, rel string) string {
 		return fmt.Sprintf(`<link rel="%s" href="%s%s/%s">`, rel, CONTEXT_PATH, "assets", href)
+	}
+}
+
+// retrieve the front matter of the raw markdown bytes. The front matter is
+// returned as a map[string]any. The keys are the names of the front matter
+func (fmc *FuncMapClosure) FrontMatter() func(b []byte) map[string]any {
+	return func(b []byte) map[string]any {
+		root := fmc.e.markdown.Parser().Parse(text.NewReader(b))
+		doc := root.OwnerDocument()
+		return doc.Meta()
 	}
 }

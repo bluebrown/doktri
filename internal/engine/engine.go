@@ -12,7 +12,7 @@ import (
 	"strings"
 	"text/template"
 
-	"github.com/Masterminds/sprig"
+	"github.com/Masterminds/sprig/v3"
 	chromahtml "github.com/alecthomas/chroma/v2/formatters/html"
 	"github.com/alecthomas/chroma/v2/styles"
 	"github.com/bluebrown/treasure-map/textfunc"
@@ -26,6 +26,7 @@ import (
 	"github.com/yuin/goldmark/extension"
 	"github.com/yuin/goldmark/parser"
 	"github.com/yuin/goldmark/renderer/html"
+	"go.abhg.dev/goldmark/frontmatter"
 	"sigs.k8s.io/yaml"
 
 	"github.com/bluebrown/doktri/internal/fsys"
@@ -76,9 +77,13 @@ func New(options ...Option) Engine {
 					chromahtml.WithClasses(true),
 				),
 			),
+			&frontmatter.Extender{
+				Mode: frontmatter.SetMetadata,
+			},
 		),
 		goldmark.WithParserOptions(
 			parser.WithAutoHeadingID(),
+			parser.WithAttribute(),
 		),
 		goldmark.WithRendererOptions(
 			html.WithUnsafe(),

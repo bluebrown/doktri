@@ -137,7 +137,7 @@ func (n *TreeNode) Title() string {
 }
 
 // convenience function to get a nodes siblings this is the same as getting the
-// parents children, filtering itself out will panic when called on the root
+// parents children, filtering itself out. will panic when called on the root
 // node, since a root has no parent and therefore no siblings
 func (n *TreeNode) Siblings() TreeNodeList {
 	if n.IsRoot {
