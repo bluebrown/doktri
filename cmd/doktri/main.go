@@ -53,6 +53,11 @@ func main() {
 						Usage:   "context path used when generating links",
 						EnvVars: []string{"DOKTRI_CONTEXT"},
 					},
+					&cli.StringFlag{
+						Name:    "chroma-style",
+						Usage:   "chroma style to use for syntax highlighting",
+						EnvVars: []string{"DOKTRI_CHROMA_STYLE"},
+					},
 				},
 			},
 			{
@@ -81,6 +86,11 @@ func main() {
 						Name:  "port",
 						Usage: "the port to listen on",
 						Value: 3000,
+					},
+					&cli.StringFlag{
+						Name:    "chroma-style",
+						Usage:   "chroma style to use for syntax highlighting",
+						EnvVars: []string{"DOKTRI_CHROMA_STYLE"},
 					},
 				},
 			},

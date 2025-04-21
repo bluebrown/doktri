@@ -14,6 +14,7 @@ func Build(cCtx *cli.Context) error {
 		engine.WithTheme(cCtx.String("theme")),
 		engine.WithAuthor(cCtx.String("author")),
 		engine.WithContextPath(cCtx.String("context")),
+		engine.WithChromaStyle(cCtx.String("chroma-style")),
 	)
 	return build(e)
 }

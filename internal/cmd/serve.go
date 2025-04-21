@@ -15,6 +15,7 @@ type DevServer struct {
 	Dist   string
 	Theme  string
 	Author string
+	Style  string
 	Port   int
 	ngn    engine.Engine
 }
@@ -26,6 +27,7 @@ func Serve(cCtx *cli.Context) error {
 		Theme:  cCtx.String("theme"),
 		Author: cCtx.String("author"),
 		Port:   cCtx.Int("port"),
+		Style:  cCtx.String("chroma-style"),
 	}
 	return s.Serve()
 }
@@ -102,5 +104,6 @@ func (s *DevServer) makeEngine() {
 		engine.WithDist(s.Dist),
 		engine.WithTheme(s.Theme),
 		engine.WithAuthor(s.Author),
+		engine.WithChromaStyle(s.Style),
 	)
 }
